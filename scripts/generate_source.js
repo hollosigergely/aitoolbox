@@ -14,8 +14,8 @@ function generate_source(target_dir, ipynb_file_path)
     service_idx = cells_array.findIndex((element) => {
         return element.cell_type == 'markdown' && element.source.length > 0  && element.source[0] == "# Service"
     })
-    console.info('Setup index: ' + setup_idx)
-    console.info('Service index: ' + service_idx)
+    console.info('Setup cell index: ' + setup_idx)
+    console.info('Service cell index: ' + service_idx)
 
     if(service_idx == -1 || setup_idx == -1)
         throw RangeError('No service or setup markdown entry can be found!')
@@ -42,12 +42,15 @@ function generate_source(target_dir, ipynb_file_path)
     service_file.end()
 }
 
+if (require.main === module) {
+    if(process.argv.length < 4) {
+        console.error("Usage: generate_source.js <ipynb file> <target_dir>")
+        process.exit(1)
+    }
 
-if(process.argv.length < 4) {
-    console.error("Usage: generate_source.js <ipynb file> <target_dir>")
-    process.exit(1)
+    ipynb_file_path = process.argv[2]
+    target_dir = process.argv[3]
+    generate_source(target_dir, ipynb_file_path)
+} else {
+    module.exports = generate_source
 }
-
-ipynb_file_path = process.argv[2]
-target_dir = process.argv[3]
-generate_source(target_dir, ipynb_file_path)
