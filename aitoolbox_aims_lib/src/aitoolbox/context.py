@@ -1,3 +1,4 @@
+import os
 from abc import ABC, abstractmethod
 from . import sources
 from . import destinations
@@ -27,17 +28,28 @@ class Context(ABC):
     def get_destinations(self):
         pass
 
+    @abstractmethod
+    def get_env(self, key):
+        pass
+
 
 class NotebookContext(Context):
     def __init__(self):
         self.sources = sources.TestSources()
         self.dest = destinations.TestDestination()
+        self.env = {}
 
     def get_sources(self):
         return self.sources
     
     def get_destinations(self):
         return self.dest
+
+    def get_env(self, key):
+        return self.env[key]
+
+    def set_env(self, key, value):
+        self.env[key] = value
     
 
 class ServerContext(Context):
@@ -53,3 +65,6 @@ class ServerContext(Context):
     
     def get_destinations(self):
         return self.dest
+
+    def get_env(self,key):
+        return os.environ[key]
