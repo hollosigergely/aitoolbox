@@ -5,7 +5,7 @@ import json
 import argparse
 import aitoolbox.context as aictx
 import aitoolbox.sources as aisources
-
+import aitoolbox.errors as aierr
 
 context = aictx.ServerContext()
 aictx.Context.set(context)
@@ -18,7 +18,13 @@ class MainHandler(tornado.web.RequestHandler):
         logging.debug(f'Request: {req}')
 
         context.set_sources(aisources.RESTSources(self.request.body))
-        exec(service_code)
+
+        try:
+            exec(service_code)
+        except aierr.ServiceError as e:
+            self.write(str(e))
+            self.set_status(500)
+            return
 
         self.write(context.get_destinations().serialize())
 
