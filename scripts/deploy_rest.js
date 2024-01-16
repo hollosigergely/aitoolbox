@@ -2,14 +2,14 @@ path = require('path')
 fs = require('node:fs/promises')
 
 
-async function deploy_rest(ipynb_file_path,target_dir)
+async function deploy_rest(ipynb_file_path,target_dir,tool_dir)
 {
     // create dir
     await fs.rm(target_dir, options = { recursive: true, force: true })
     await fs.mkdir(target_dir)
 
     // copy deploy artifacts of tool
-    await fs.cp('.deploy/',target_dir, options = { recursive: true })
+    await fs.cp(path.resolve(tool_dir,'.deploy/'),target_dir, options = { recursive: true })
 
     // generate source code
     await fs.mkdir(path.resolve(target_dir,'service','src'))
@@ -27,13 +27,13 @@ async function deploy_rest(ipynb_file_path,target_dir)
 
 if (require.main === module) { 
     if(process.argv.length < 4) {
-        console.error("Usage: deploy_rest.js <ipynb file> <target_dir>")
+        console.error("Usage: deploy_rest.js <ipynb file> <target_dir> <tool_dir>")
         process.exit(1)
     }
 
     ipynb_file_path = process.argv[2]
     target_dir = process.argv[3]
-    deploy_rest(ipynb_file_path, target_dir)
+    deploy_rest(ipynb_file_path, target_dir, process.argv[4])
 } else {
     module.exports = deploy_rest
 }
