@@ -33,7 +33,7 @@ if (require.main === module) {
 
     ipynb_file_path = process.argv[2]
     target_dir = process.argv[3]
-    deploy_rest(ipynb_file_path, target_dir, process.argv[4])
+    deploy_rest(ipynb_file_path, target_dir, '.')
 } else {
     module.exports = deploy_rest
 }
