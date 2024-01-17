@@ -1,0 +1,64 @@
+{
+    "tools": [
+        {
+            "title": "Generative AI",
+            "link": "https://www.google.com.ua/",
+            "links": [
+                {
+                    "title": "Falcon LLM 7B",
+                    "link": "https://github.com/hollosigergely/tool-falcon"
+                },
+                {
+                    "title": "Prompt Context Injection",
+                    "link": "https://github.com/hollosigergely/prompt-ci"
+                }
+            ]
+        },
+        {
+            "title": "Predictive maintenance",
+            "link": "https://www.google.com/",
+            "links": [
+                {
+                    "title": "Vibration analysis",
+                    "link": "https://www.google.com/"
+                },
+                {
+                    "title": "Vision-based quality control",
+                    "link": "https://www.google.com/"
+                }
+            ]
+        },
+        {
+            "title": "Object tracking",
+            "link": "https://www.google.com.ua/",
+            "links": [
+                {
+                    "title": "Object detection",
+                    "link": "https://www.google.com/"
+                },
+                {
+                    "title": "Track creation",
+                    "link": "https://www.google.com/"
+                },
+                {
+                    "title": "Re-identification",
+                    "link": "https://www.google.com/"
+                }
+            ]
+        },
+        {
+            "title": "Geofencing",
+            "link": "https://www.google.com/",
+            "links": [
+                {
+                    "title": "Object detection",
+                    "link": "https://www.google.com/"
+                },
+                {
+                    "title": "Preson identification",
+                    "link": "https://www.google.com/"
+                }
+            ]
+        }
+    ]
+}
