@@ -1,7 +1,7 @@
 {
     "tools": [
         {
-            "title": "Generative AI",
+            "title": "Language Processing",
             "link": "https://www.google.com.ua/",
             "links": [
                 {
@@ -15,11 +15,11 @@
             ]
         },
         {
-            "title": "Predictive maintenance",
+            "title": "Anomaly detection",
             "link": "https://www.google.com/",
             "links": [
                 {
-                    "title": "Vibration analysis",
+                    "title": "Time series anomaly",
                     "link": "https://www.google.com/"
                 },
                 {
@@ -29,7 +29,7 @@
             ]
         },
         {
-            "title": "Object tracking",
+            "title": "Image processing",
             "link": "https://www.google.com.ua/",
             "links": [
                 {
@@ -42,6 +42,10 @@
                 },
                 {
                     "title": "Re-identification",
+                    "link": "https://www.google.com/"
+                },
+                {
+                    "title": "Preson identification",
                     "link": "https://www.google.com/"
                 }
             ]
