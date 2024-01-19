@@ -2,7 +2,7 @@ path = require('path')
 fs = require('node:fs/promises')
 
 
-async function deploy_rest(ipynb_file_path,target_dir,tool_dir)
+async function deploy_rest(ipynb_file_path,target_dir,tool_dir, aitoolbox_dir)
 {
     // create dir
     await fs.rm(target_dir, options = { recursive: true, force: true })
@@ -13,14 +13,15 @@ async function deploy_rest(ipynb_file_path,target_dir,tool_dir)
 
     // generate source code
     await fs.mkdir(path.resolve(target_dir,'service','src'))
-    await fs.copyFile(path.resolve(__dirname,"..","artifacts","main.py"), path.resolve(target_dir,'service','src','main.py'))
+    await fs.copyFile(path.resolve(aitoolbox_dir,"artifacts","main.py"), path.resolve(target_dir,'service','src','main.py'))
 
     generate_source = require('./generate_source')
     generate_source(path.resolve(target_dir,'service','src'), ipynb_file_path)
 
+
     // copy aitoolbox wheel
     await fs.mkdir(path.resolve(target_dir,'service','wheels'))
-    await fs.copyFile(path.resolve(__dirname,"..","aitoolbox_aims_lib","dist","aitoolbox_aims-0.0.1-py3-none-any.whl"),
+    await fs.copyFile(path.resolve(aitoolbox_dir,"aitoolbox_aims_lib","dist","aitoolbox_aims-0.0.1-py3-none-any.whl"),
         path.resolve(target_dir,'service','wheels','aitoolbox_aims-0.0.1-py3-none-any.whl'))
 }
 
@@ -33,7 +34,9 @@ if (require.main === module) {
 
     ipynb_file_path = process.argv[2]
     target_dir = process.argv[3]
-    deploy_rest(ipynb_file_path, target_dir, '.')
+
+    deploy_rest(ipynb_file_path, target_dir, process.argv[4], path.resolve(__dirname, '..'))
+
 } else {
     module.exports = deploy_rest
 }
