@@ -49,20 +49,6 @@
                     "link": "https://www.google.com/"
                 }
             ]
-        },
-        {
-            "title": "Geofencing",
-            "link": "https://www.google.com/",
-            "links": [
-                {
-                    "title": "Object detection",
-                    "link": "https://www.google.com/"
-                },
-                {
-                    "title": "Preson identification",
-                    "link": "https://www.google.com/"
-                }
-            ]
         }
     ]
 }
