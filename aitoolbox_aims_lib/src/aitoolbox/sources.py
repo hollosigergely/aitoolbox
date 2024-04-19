@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 import json
+from .datatypes.rest_decoder import RestDecoder
+
 
 class Sources(ABC):
     @abstractmethod
@@ -28,10 +30,11 @@ class TestSources(Sources):
 
 class RESTSources(Sources):
     def __init__(self, req_body):
-        self.req = json.loads(req_body)
+        self.req = RestDecoder.decode(req_body)
 
     def set(self, param_name, value):
         self.req[param_name] = value
 
     def get(self, param_name):
         return self.req[param_name]
+
