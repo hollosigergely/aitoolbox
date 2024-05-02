@@ -3,12 +3,12 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "aitoolbox_aims"
+name = "aitoolbox_support_library"
 version = "0.0.1"
 authors = [
   { name="Example Author", email="author@example.com" },
 ]
-description = "AIMS 5.0 AI Toolbox Python Library"
+description = "AIMS 5.0 AI Toolbox Python Support Library"
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
