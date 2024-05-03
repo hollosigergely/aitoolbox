@@ -44,7 +44,11 @@ def deploy_tool_rest(tool_dir, target_dir):
         logging.error("Provide tool directory and target directory!")
         sys.exit(-1)
 
-    with open(f"{tool_dir}/config.ai", 'r') as file:
+    if not os.path.exists(os.path.join(tool_dir,'config.ai')):
+        logging.error("Tool has no 'config.ai' file!")
+        sys.exit(-1)
+
+    with open(os.path.join(tool_dir,'config.ai'), 'r') as file:
         tool_config = yaml.safe_load(file)
 
     logging.info(f"Generate deploy scripts for tool {tool_config['tool']['name']} (version {tool_config['tool']['version']}) into {target_dir}")
