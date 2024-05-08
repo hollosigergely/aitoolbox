@@ -6,6 +6,7 @@ import more_itertools
 import yaml
 import os
 import shutil
+import pkg_resources
 
 def generate_source(ipynb_file, target_dir):
     if ipynb_file is None or target_dir is None:
@@ -53,9 +54,6 @@ def deploy_tool_rest(tool_dir, target_dir):
 
     logging.info(f"Generate deploy scripts for tool {tool_config['tool']['name']} (version {tool_config['tool']['version']}) into {target_dir}")
 
-    toolbox_support_lib_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)),'..')
-    logging.debug(f"Toolbox support library dir: {toolbox_support_lib_dir}")
-
     if tool_config['deploy']['mode'] != "rest_builtin":
         logging.error(f"Unknown deploy mode {tool_config['deploy']['mode']}")
         sys.exit(-1)
@@ -70,16 +68,16 @@ def deploy_tool_rest(tool_dir, target_dir):
     shutil.copytree(os.path.join(tool_dir,deploy_dir), target_dir, dirs_exist_ok = True)
 
     if nb_path is not None:
+        service_main_file_path = pkg_resources.resource_filename('aitoolbox', 'artifacts/main.py')
+        logging.debug(f"Service main file: {service_main_file_path}")
+
         os.makedirs(os.path.join(target_dir,'service','src'), mode = 0o777, exist_ok = False)
 
         generate_source(os.path.join(tool_dir,nb_path),os.path.join(target_dir,'service','src'))
-        shutil.copy(os.path.join(toolbox_support_lib_dir,'artifacts','main.py'), os.path.join(target_dir,'service','src'))
+        shutil.copy(service_main_file_path, os.path.join(target_dir,'service','src'))
+        
 
-    #await fs.copyFile(path.resolve(aitoolbox_dir,"artifacts","main.py"), path.resolve(target_dir,'service','src','main.py'))
-
-
-
-if __name__ == "__main__":
+def run_cmd():
     logging.basicConfig(level=logging.DEBUG)
 
     parser = argparse.ArgumentParser(
@@ -93,8 +91,14 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
 
-    match args.command:
-        case "gensrc":
-            generate_source(args.etc[0], args.output)
-        case "deploy":
-            deploy_tool_rest(args.etc[0], args.output)
+    if args.command == "gensrc":
+        generate_source(args.etc[0], args.output)
+    elif args.command == "deploy":
+        deploy_tool_rest(args.etc[0], args.output)
+    else:
+        logging.error(f'Unknown command: {args.command}')
+
+
+
+if __name__ == "__main__":
+   run_cmd()
