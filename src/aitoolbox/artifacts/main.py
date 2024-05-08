@@ -3,9 +3,9 @@ import asyncio
 import tornado
 import json
 import argparse
-import aitoolbox.context as aictx
-import aitoolbox.sources as aisources
-import aitoolbox.errors as aierr
+import aitoolbox_support_lib.context as aictx
+import aitoolbox_support_lib.sources as aisources
+import aitoolbox_support_lib.errors as aierr
 
 context = aictx.ServerContext()
 aictx.Context.set(context)
@@ -13,11 +13,9 @@ aictx.Context.set(context)
 class MainHandler(tornado.web.RequestHandler):
     def post(self):
         logging.info('Got request')
-        req = json.loads(self.request.body)
         logging.debug(f'Headers: {self.request.headers}')
-        logging.debug(f'Request: {req}')
 
-        context.set_sources(aisources.RESTSources(self.request.body))
+        context.set_sources(aisources.RESTSources(self.request))
 
         try:
             exec(service_code)

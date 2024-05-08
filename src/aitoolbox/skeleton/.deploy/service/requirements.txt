@@ -1,0 +1,6 @@
+### AI Toolbox dependencies ###
+tornado==6.4  
+###############################
+
+# User packages
+numpy

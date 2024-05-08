@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  aitoolbox-example-service:
+    container_name: aitoolbox-example-service
+    image: aitoolbox/example-service
+
+# build the service based on the Dockerfile
+    build: 
+      context: ./service
+
+# share ports
+    ports:
+      - "12345:80"
+
+# to share GPU use proper driver and the resources below
+    deploy:
+      resources:
+        reservations:
+          devices:          
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]   

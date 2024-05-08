@@ -1,0 +1,8 @@
+tool:
+    name: "Example AI Tool"
+    descr: "This is description of the tool"
+    version: 0.0.1
+deploy:
+    mode: "rest_builtin"
+    deploy_dir: ".deploy"
+    nb_path: "query.ipynb"
