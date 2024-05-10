@@ -10,12 +10,10 @@ from aitoolbox_support_lib.errors import ServiceError
 
 class MainHandler(tornado.web.RequestHandler):
     def post(self):
-        context = ServerContext()
-        Context.set(context)
-
         logging.info('Got request')
         logging.debug(f'Headers: {self.request.headers}')
 
+        context = Context.get()
         context.set_sources(RESTSources(self.request))
 
         try:
@@ -26,6 +24,7 @@ class MainHandler(tornado.web.RequestHandler):
             return
 
         context.get_destinations().generate_response(self)
+        context.get_destinations().clear()
 
 
 async def main():
@@ -35,6 +34,10 @@ async def main():
 
     app.listen(args.port)
     logging.info(f"Server started on port {args.port}")
+
+    context = ServerContext(app)
+    Context.set(context)
+
     await asyncio.Event().wait()
 
 if __name__ == "__main__":
