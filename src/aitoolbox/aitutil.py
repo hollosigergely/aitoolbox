@@ -24,7 +24,7 @@ def generate_source(ipynb_file, target_dir):
     setup_cells,service_cells = more_itertools.before_and_after(lambda cell: cell["cell_type"] != "markdown" or len(cell["source"]) == 0 or cell["source"][0] != "# Service", rem)
 
     source_mapper = lambda cell: cell["source"]
-    source_filter = lambda cell: cell["cell_type"] == "code"
+    source_filter = lambda cell: cell["cell_type"] == "code" and len(cell["source"]) > 0 and not cell["source"][0].startswith("#!skip")
 
     setup_src = ("".join(lines) for lines in map(source_mapper,filter(source_filter, setup_cells)))
     service_src = ("".join(lines) for lines in map(source_mapper,filter(source_filter, service_cells)))
@@ -75,7 +75,7 @@ def deploy_tool_rest(tool_dir, target_dir):
 
         generate_source(os.path.join(tool_dir,nb_path),os.path.join(target_dir,'service','src'))
         shutil.copy(service_main_file_path, os.path.join(target_dir,'service','src'))
-        
+
 
 def run_cmd():
     logging.basicConfig(level=logging.DEBUG)

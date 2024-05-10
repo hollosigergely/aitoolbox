@@ -3,24 +3,24 @@ import asyncio
 import tornado
 import json
 import argparse
-import aitoolbox_support_lib.context as aictx
-import aitoolbox_support_lib.sources as aisources
-import aitoolbox_support_lib.errors as aierr
+from aitoolbox_support_lib.context import Context, ServerContext
+from aitoolbox_support_lib.sources import RESTSources,SourcesError
+from aitoolbox_support_lib.errors import ServiceError
 
 
 class MainHandler(tornado.web.RequestHandler):
     def post(self):
-        context = aictx.ServerContext()
-        aictx.Context.set(context)
+        context = ServerContext()
+        Context.set(context)
 
         logging.info('Got request')
         logging.debug(f'Headers: {self.request.headers}')
 
-        context.set_sources(aisources.RESTSources(self.request))
+        context.set_sources(RESTSources(self.request))
 
         try:
             exec(service_code)
-        except aierr.ServiceError as e:
+        except Exception as e:
             self.write(str(e))
             self.set_status(500)
             return
