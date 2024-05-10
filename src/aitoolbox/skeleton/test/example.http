@@ -1,6 +1,14 @@
 
 POST http://localhost:12345 HTTP/1.1
+Mime-Type: application/json
 
 {
     "arg2": 8
 }
+
+###
+
+POST http://localhost:12345 HTTP/1.1
+Mime-Type: image/png
+
+< /home/hollosi/Pictures/aitoolbox.png

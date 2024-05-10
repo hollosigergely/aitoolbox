@@ -7,11 +7,12 @@ import aitoolbox_support_lib.context as aictx
 import aitoolbox_support_lib.sources as aisources
 import aitoolbox_support_lib.errors as aierr
 
-context = aictx.ServerContext()
-aictx.Context.set(context)
 
 class MainHandler(tornado.web.RequestHandler):
     def post(self):
+        context = aictx.ServerContext()
+        aictx.Context.set(context)
+
         logging.info('Got request')
         logging.debug(f'Headers: {self.request.headers}')
 
@@ -24,7 +25,7 @@ class MainHandler(tornado.web.RequestHandler):
             self.set_status(500)
             return
 
-        self.write(context.get_destinations().serialize())
+        context.get_destinations().generate_response(self)
 
 
 async def main():
