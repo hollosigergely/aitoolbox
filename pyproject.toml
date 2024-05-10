@@ -12,7 +12,8 @@ description = "AIMS 5.0 AI Toolbox"
 readme = "README.md"
 requires-python = ">=3.7"
 dependencies = [
-    "more_itertools"
+    "more_itertools",
+    "yaml"
 ]
 classifiers = [
     "Programming Language :: Python :: 3",

@@ -40,7 +40,7 @@ pip3 install git+https://github.com/hollosigergely/aitoolbox.git
 pip3 install git+https://github.com/hollosigergely/aitoolbox_support_library.git
 ```
 
-Now, AI Toolbox is installed, and you can start using the [aitutil](doc/aitutil) tool, or browse the [tool catalogue](https://github.com/hollosigergely/app-catalogue). Also, try the 
+Now, AI Toolbox is installed, and you can start using the [aitutil](doc/aitutil.md) tool, or browse the [tool catalogue](https://github.com/hollosigergely/app-catalogue). Also, try the 
 [demo tool](https://github.com/hollosigergely/demo-tool), which provide a skeleton for developing tools.
 
 ## Citation
