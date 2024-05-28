@@ -1,9 +1,8 @@
-<img style="float: left; margin-right:12px;" height="40" width="auto" src="icon.png">
-
 # AIMS5.0 AI Toolbox
 
-
-If you are searching for the available applications and tools for the AIMS 5.0 AI Toolbox, see [https://github.com/hollosigergely/app-catalogue](https://github.com/hollosigergely/app-catalogue). 
+<img align="right" width="60" height="60" src="icon.png">
+  
+If you are searching for the available applications and tools for the AIMS 5.0 AI Toolbox, see [https://github.com/hollosigergely/app-catalogue](https://github.com/hollosigergely/app-catalogue).
 
 ## Introduction
 The AIMS 5.0 AI Toolbox is a concept for giving new ways of fast prototyping of AI-based models and libraries. By incorporating solid best practices and recommendations, the toolbox provides a structured framework for industrial users to harness the power of AI effectively. To understand the concept of the AI Toolbox, please read the [paper](doc/NOMS2024.pdf).
