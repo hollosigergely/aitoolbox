@@ -1,4 +1,7 @@
+<img style="float: left; margin-right:12px;" height="40" width="auto" src="icon.png">
+
 # AIMS5.0 AI Toolbox
+
 
 If you are searching for the available applications and tools for the AIMS 5.0 AI Toolbox, see [https://github.com/hollosigergely/app-catalogue](https://github.com/hollosigergely/app-catalogue). 
 
