@@ -1,6 +1,6 @@
 # AIMS5.0 AI Toolbox
 
-<img align="right" width="60" height="60" src="icon.png">
+<img align="right" width="60" height="auto" src="iconc.png">
   
 If you are searching for the available applications and tools for the AIMS 5.0 AI Toolbox, see [https://github.com/hollosigergely/app-catalogue](https://github.com/hollosigergely/app-catalogue).
 
